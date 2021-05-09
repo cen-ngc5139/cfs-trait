@@ -1,0 +1,7 @@
+domain: ghostbaby.com
+repo: github.com/ghostbaby/cfs-trait
+resources:
+- group: trait
+  kind: CfsTrait
+  version: v1
+version: "2"

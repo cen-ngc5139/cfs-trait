@@ -1,0 +1,17 @@
+apiVersion: trait.ghostbaby.com/v1
+kind: CfsTrait
+metadata:
+  name: cfstrait-sample
+  labels:
+    app: wrk-qa
+spec:
+  # Add fields here
+  labelKey: app
+  appName: wrk-qa
+#  pods:
+#    - traefik-ingress-lb-zqdt7
+  isAllPods: true
+  namespace: qa
+  period: 90000
+  quota: 100000
+  force: true

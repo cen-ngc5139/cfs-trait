@@ -1,0 +1,56 @@
+
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: mutating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - '["v1"]'
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-trait-ghostbaby-com-v1-cfstrait
+  failurePolicy: Fail
+  name: mcfstrait.kb.io
+  rules:
+  - apiGroups:
+    - trait.ghostbaby.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - cfstraits
+  sideEffects: None
+
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - '["v1"]'
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-trait-ghostbaby-com-v1-cfstrait
+  failurePolicy: Fail
+  name: vcfstrait.kb.io
+  rules:
+  - apiGroups:
+    - trait.ghostbaby.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - cfstraits
+  sideEffects: None

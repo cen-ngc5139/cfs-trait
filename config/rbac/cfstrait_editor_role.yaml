@@ -1,0 +1,24 @@
+# permissions for end users to edit cfstraits.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cfstrait-editor-role
+rules:
+- apiGroups:
+  - trait.ghostbaby.com
+  resources:
+  - cfstraits
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - trait.ghostbaby.com
+  resources:
+  - cfstraits/status
+  verbs:
+  - get
